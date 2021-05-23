@@ -3,7 +3,7 @@
 <ul>
   <% @robots.each do |robot| %>
     <li>
-      <%= robot.name %>
+      <%= link_to robot.name, robot_path(robot[:id]) %>
       <%= robot.description %>
       <%= robot.price %>
     </li>

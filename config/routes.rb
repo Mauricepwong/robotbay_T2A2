@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'robots/:id', to: "robots#show", as: "robot"
   get 'robots/:id/edit', to: "robots#edit", as: "edit_order"
   put 'robots/:id', to: "robots#update"
+  patch 'robots/:id', to: "robots#update"
+  
   delete 'robots/:id', to: "robots#destroy"
 
   devise_for :users
