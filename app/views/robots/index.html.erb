@@ -1,0 +1,11 @@
+<h1>Robots#index</h1>
+
+<ul>
+  <% @robots.each do |robot| %>
+    <li>
+      <%= robot.name %>
+      <%= robot.description %>
+      <%= robot.price %>
+    </li>
+  <% end %>
+</ul>
