@@ -26,11 +26,12 @@ class RobotsController < ApplicationController
 
   def update
     @robot.update(robot_params)
-    redirect_to robots_path
+    redirect_to robot_path
   end
 
   def destroy
     @robot.destroy
+    redirect_to robots_path, notice: "Robot was successfully deleted"
   end
 
   private
@@ -39,6 +40,6 @@ class RobotsController < ApplicationController
   end
 
  def robot_params
-  params.require(:robot).permit(:name, :description, :price)
+  params.require(:robot).permit(:name, :description, :price, :image)
  end
 end

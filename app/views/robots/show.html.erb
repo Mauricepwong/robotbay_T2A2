@@ -1,4 +1,33 @@
 <h1>Robots#show</h1>
 <p>Find me in app/views/robots/show.html.erb</p>
 
-<%= render "form", robot: @robot %>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @robot.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @robot.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  $<%= @robot.price %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <% if @robot.image.attached?%>
+  <%= image_tag(@robot.image) %>
+  <% else %>
+    <strong>No image provided</strong>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_robot_path(@robot) %> |
+<%= link_to 'Delete', @robot, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', robots_path %>
+
