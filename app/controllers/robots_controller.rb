@@ -1,5 +1,6 @@
 class RobotsController < ApplicationController
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @robots = Robot.all
@@ -40,6 +41,6 @@ class RobotsController < ApplicationController
   end
 
  def robot_params
-  params.require(:robot).permit(:name, :description, :price, :image)
+  params.require(:robot).permit(:name, :description, :price, :image, :user_id)
  end
 end

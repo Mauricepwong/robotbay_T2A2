@@ -20,6 +20,10 @@
         <%= image_tag(@robot.image) if @robot.image.attached?%>
     </div>
 
+    <div class="field">
+        <%= form.text_field :user_id, id: :robot_user_id, value:current_user.id, type: :hidden%>
+    </div>
+
     <div class="actions">
         <%= form.submit %>
     </div>

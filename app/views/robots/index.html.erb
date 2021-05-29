@@ -5,7 +5,7 @@
     <li>
       <%= link_to robot.name, robot_path(robot[:id]) %>
       <%= robot.description %>
-      <%= robot.price %>
+      $<%= robot.price %>
         <%= image_tag(robot.image) if robot.image.attached? %>
     </li>
   <% end %>
