@@ -2,6 +2,14 @@ class RobotsController < ApplicationController
   before_action :set_robot, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
+  rescue_from RuntimeError, with: :unauthorised
+
+  def unauthorised
+    flash[:alert] = "You are not authorised to change this robot"
+    redirect_to robots_path
+  end
+
+
   def index
     @robots = Robot.all
   end
@@ -23,6 +31,7 @@ class RobotsController < ApplicationController
   end
 
   def edit
+    raise "unauthorised" if current_user != @robot.user
   end
 
   def update
@@ -32,12 +41,18 @@ class RobotsController < ApplicationController
 
   def destroy
     @robot.destroy
-    redirect_to robots_path, notice: "Robot was successfully deleted"
+    flash[:notice] = "Robot was successfully deleted"
+    redirect_to robots_path
   end
 
   private
   def set_robot
-   @robot = Robot.find(params[:id])
+    begin
+      @robot = Robot.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "That robot does not exist"
+      redirect_to robots_path 
+    end
   end
 
  def robot_params

@@ -27,7 +27,7 @@
   <% end %>
 </p>
 
-<% if @robot.user == current_user.id %>
+<% if @robot.user == current_user %>
   <%= link_to 'Edit', edit_robot_path(@robot) %> |
   <%= link_to 'Delete', @robot, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <% end %>

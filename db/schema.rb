@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_29_031127) do
+ActiveRecord::Schema.define(version: 2021_06_01_070919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(version: 2021_05_29_031127) do
   end
 
   create_table "robots", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
-    t.integer "price"
+    t.integer "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
