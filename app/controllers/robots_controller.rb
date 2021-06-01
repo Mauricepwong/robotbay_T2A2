@@ -20,8 +20,14 @@ class RobotsController < ApplicationController
   end
 
   def create
-    @robot = Robot.create(robot_params)
-    redirect_to robots_path
+    @robot = Robot.new(robot_params)
+
+    if @robot.save 
+      flash[:notice] = "Robot was successfully created"
+      redirect_to robots_path
+    else
+      redirect_to new_robot_path, flash[:notice] = "Error saving robot. Please try again"
+    end
   end
 
   def show
@@ -35,8 +41,12 @@ class RobotsController < ApplicationController
   end
 
   def update
-    @robot.update(robot_params)
-    redirect_to robot_path
+    if @robot.update(robot_params)
+      flash[:notice] = "Robot was successfully updated"
+      redirect_to @robot
+    else
+      redirect_to @robot, flash[:notice] = "Error updating robot. Please try again"
+    end
   end
 
   def destroy

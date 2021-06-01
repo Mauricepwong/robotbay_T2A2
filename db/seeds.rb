@@ -5,4 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-robots = Robot.create([{ name: "Unit 1", description: "Neon genisis", price: 20 }, { name: "Jaguer", description: "pacific rim", price: 34}])
+robots = Robot.create(
+    [
+        { name: "Unit 1", description: "Neon genisis", price: 20 }, 
+        { name: "Jaguer", description: "pacific rim", price: 34}])
+    ]
