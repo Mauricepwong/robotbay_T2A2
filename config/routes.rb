@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   get 'robots/:id/edit', to: "robots#edit", as: "edit_robot"
   put 'robots/:id', to: "robots#update"
   patch 'robots/:id', to: "robots#update"
-  
   delete 'robots/:id', to: "robots#destroy"
+
+
 
   devise_for :users
   root 'home#index'
