@@ -12,6 +12,7 @@ class RobotsController < ApplicationController
 
   def index
     @robots = Robot.all
+    @robots = Robot.order(params[:sort])
   end
   
 
@@ -31,9 +32,6 @@ class RobotsController < ApplicationController
   end
 
   def show
-    @robot = Robot.find do |robot|
-      robot[:id] == params[:id].to_i 
-    end
   end
 
   def edit

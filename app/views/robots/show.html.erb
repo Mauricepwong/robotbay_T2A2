@@ -27,12 +27,14 @@
   <% end %>
 </p>
 
+<button type="button" id="checkout-button">Checkout</button>
+
 <% if @robot.user == current_user %>
   <%= link_to 'Edit', edit_robot_path(@robot) %> |
   <%= link_to 'Delete', @robot, method: :delete, data: { confirm: 'Are you sure?' } %> |
 <% end %>
 
-<button type="button" id="checkout-button">Checkout</button>
+
 
 <%= link_to 'Back', robots_path %>
 
