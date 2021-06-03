@@ -53,6 +53,10 @@ class RobotsController < ApplicationController
     redirect_to robots_path
   end
 
+  def myrobots
+    @robots = current_user.robots
+  end
+
   private
   def set_robot
     begin

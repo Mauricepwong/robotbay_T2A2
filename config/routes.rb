@@ -7,9 +7,14 @@ Rails.application.routes.draw do
   put 'robots/:id', to: "robots#update"
   patch 'robots/:id', to: "robots#update"
   delete 'robots/:id', to: "robots#destroy"
+
   get 'checkout/success', to: "transactions#success"
   get 'checkout/cancel', to: "transactions#cancel"
   post 'transactions', to: "transactions#create", as: "transactions"
+
+  get '/profile', to: "users#show", as: "user"
+
+  get '/profile/myrobots', to: "robots#myrobots", as: "my_robots"
 
   devise_for :users
   root 'home#index'

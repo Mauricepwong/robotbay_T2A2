@@ -1,0 +1,17 @@
+<h1>My robots</h1>
+
+<table>
+ <tr>
+   <th><%= link_to "Robot Name", :sort => "name"%> </th>
+   <th><%= link_to "Price", :sort => "price"%> </th>
+   <th>Image</th>
+ </tr>
+ <% @robots.each do |robot| %>
+<tr>
+     <td><%= link_to robot.name, robot_path(robot[:id]) %></td>
+     <td>$<%= robot.price %></td>
+     <td><%= image_tag(robot.image) if robot.image.attached? %></td>
+   </tr>
+ <% end %>
+ 
+ </table>

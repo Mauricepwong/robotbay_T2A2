@@ -27,7 +27,9 @@
   <% end %>
 </p>
 
-<button type="button" id="checkout-button">Checkout</button>
+<% if @robot.user != current_user && user_signed_in? %>
+<button type="button" id="checkout-button">Buy</button>
+<% end %>
 
 <% if @robot.user == current_user %>
   <%= link_to 'Edit', edit_robot_path(@robot) %> |
@@ -45,6 +47,10 @@
     checkoutButton.addEventListener("click", function () {
       fetch("/transactions", {
         method: "POST",
+       headers: {
+       'Content-Type': 'application/x-www-form-urlencoded'
+     },
+     body: "id=<%= @robot.id %>"
       })
         .then(function (response) {
           return response.json();
