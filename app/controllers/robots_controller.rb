@@ -1,6 +1,6 @@
 class RobotsController < ApplicationController
   before_action :set_robot, only: %i[show edit update destroy]
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[index]
   before_action :access_robot, only: %i[edit update destroy]
 
   rescue_from RuntimeError, with: :unauthorised
@@ -21,7 +21,6 @@ class RobotsController < ApplicationController
 
   def create
     @robot = Robot.new(robot_params)
-
     if @robot.save
       flash[:notice] = 'Robot was successfully created'
       redirect_to robots_path
@@ -50,9 +49,11 @@ class RobotsController < ApplicationController
     flash[:notice] = 'Robot was successfully deleted'
     redirect_to robots_path
   end
-
+ # current_user.robots.where.missing(:tranactions) 
   def myrobots
-    @robots = current_user.robots
+    # @current_robots = current_user.robots.includes(:transactions).where.(:robot_id: nil)
+    @sold_robots = current_user.sold_robots
+    @purchased_robots = current_user.purchased_robots
   end
 
   private

@@ -27,7 +27,7 @@
   <% end %>
 </p>
 
-<% if @robot.user != current_user && user_signed_in? %>
+<% if @robot.user != current_user %>
 <button type="button" id="checkout-button">Buy</button>
 <% end %>
 

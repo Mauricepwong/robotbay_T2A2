@@ -1,8 +1,10 @@
 class TransactionsController < ApplicationController
   before_action :set_robot, only: [:create]
   before_action :authenticate_user!
-  before_action :access_buy
+  before_action :access_buy, only: [:create]
   skip_before_action :verify_authenticity_token, only: [:create]
+
+  rescue_from RuntimeError, with: :unauthorised
 
   def create
     session =
@@ -33,15 +35,18 @@ class TransactionsController < ApplicationController
   end
 
   def success
-    transaction =
+    tranaction =
       Transaction.create(
         buyer_id: params[:buyer_id],
         robot_id: params[:robot_id],
         seller_id: params[:user_id]
       )
+    robot = Robot.find(params[:robot_id])
+    robot.update(sold: true)
   end
 
-  def cancel; end
+  def cancel 
+  end
 
   def unauthorised
     flash[:notice] = 'You are not authorised to buy your own robot'

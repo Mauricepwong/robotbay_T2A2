@@ -18,6 +18,8 @@ Rails
     get '/profile', to: 'users#show', as: 'user'
     get '/profile/myrobots', to: 'robots#myrobots', as: 'my_robots'
 
+    delete "users/:id", to: "users#destroy"
+    
     devise_for :users
     root 'home#index'
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
