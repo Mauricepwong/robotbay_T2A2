@@ -19,6 +19,17 @@
 </p>
 
 <p>
+  <strong>Categories:</strong>
+  <% if @robot.category_ids.length != 0%>
+    <% @robot.categories.each do |category| %>
+      <%= category.name %>
+    <% end %>  
+  <% else %>
+    <strong>None</strong>
+  <% end %>
+</p>
+
+<p>
   <strong>Image:</strong>
   <% if @robot.image.attached?%>
   <%= image_tag(@robot.image) %>

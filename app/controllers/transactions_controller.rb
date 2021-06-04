@@ -49,7 +49,7 @@ class TransactionsController < ApplicationController
   end
 
   def unauthorised
-    flash[:notice] = 'You are not authorised to buy your own robot'
+    flash[:notice] = 'This purchase is not authorised'
     redirect_to robots_path
   end
 
@@ -65,6 +65,9 @@ class TransactionsController < ApplicationController
   end
 
   def access_buy
-    raise 'unauthorised' if current_user == @robot.user
+    if current_user == @robot.user 
+      raise 'unauthorised' 
+    end
   end
+
 end

@@ -72,6 +72,6 @@ class RobotsController < ApplicationController
   end
 
   def robot_params
-    params.require(:robot).permit(:name, :description, :price, :image, :user_id)
+    params.require(:robot).permit(:name, :description, :price, :image, :user_id, category_ids: [])
   end
 end

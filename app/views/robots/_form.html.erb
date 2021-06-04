@@ -21,6 +21,12 @@
     </div>
 
     <div class="field">
+        <%= form.label :categories %>
+        <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+    </div>
+
+
+    <div class="field">
         <%= form.text_field :user_id, id: :robot_user_id, value:current_user.id, type: :hidden%>
     </div>
 
