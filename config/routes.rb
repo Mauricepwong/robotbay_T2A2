@@ -17,8 +17,6 @@ Rails
 
     get '/profile', to: 'users#show', as: 'user'
     get '/profile/myrobots', to: 'robots#myrobots', as: 'my_robots'
-
-    delete "users/:id", to: "users#destroy"
     
     devise_for :users
     root 'home#index'

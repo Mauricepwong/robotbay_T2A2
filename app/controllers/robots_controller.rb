@@ -11,8 +11,7 @@ class RobotsController < ApplicationController
   end
 
   def index
-    @robots = Robot.all
-    @robots = Robot.order(params[:sort])
+    @robots = Robot.where.missing(:sale).order(params[:sort])
   end
 
   def new
@@ -30,7 +29,8 @@ class RobotsController < ApplicationController
     end
   end
 
-  def show; end
+  def show 
+  end
 
   def edit; end
 
@@ -51,7 +51,7 @@ class RobotsController < ApplicationController
   end
  # current_user.robots.where.missing(:tranactions) 
   def myrobots
-    # @current_robots = current_user.robots.includes(:transactions).where.(:robot_id: nil)
+    @current_robots = current_user.robots.where.missing(:sale)
     @sold_robots = current_user.sold_robots
     @purchased_robots = current_user.purchased_robots
   end
