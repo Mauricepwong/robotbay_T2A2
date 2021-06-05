@@ -7,11 +7,15 @@ class User < ApplicationRecord
          :rememberable,
          :validatable 
 
+  has_one_attached :profile
+
   # validates that there is an email present and that it is unique so users cant have the same account. 
   validates :email, presence: true, uniqueness: true
+  validates :username, presence: true
 
   # A User can have many robots and if user is deleted their robots will too. 
   has_many :robots, dependent: :destroy
+  
   
   # A User can be a seller or buyer of a robot. When a purchase is made, a transaction (joining table) is created 
   # with the user_ids recorded to the respective seller/buyer ID. This give access to the sold robots and purchased robots.
@@ -26,4 +30,5 @@ class User < ApplicationRecord
 
   scope :sellers, -> { joins(:sales) }
   scope :buyers, -> { joins(:purchases) }
+
 end

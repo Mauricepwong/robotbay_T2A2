@@ -1,5 +1,16 @@
 <h1>Profile</h1>
 
+<% if @user.profile.attached?%>
+  <%= image_tag(@user.profile) %>
+<% else %>
+  <%= image_tag "profile.jpg", alt: "default profile" %>
+<% end %> 
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
 <p>
   <strong>Email:</strong>
   <%= @user.email %>

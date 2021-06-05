@@ -34,17 +34,22 @@
   <% if @robot.image.attached?%>
   <%= image_tag(@robot.image) %>
   <% else %>
-    <strong>No image provided</strong>
+    <%= image_tag "robot_image.png", alt: "default image" %>
+  <% end %>
   <% end %>
 </p>
 
-<% if @robot.user != current_user %>
-<button type="button" id="checkout-button">Buy</button>
-<% end %>
+<% if @robot.sold == true %>
+  <strong>Robot Sold!</strong>
+<% else %>
+  <% if @robot.user != current_user %>
+    <button type="button" id="checkout-button">Buy</button>
+  <% end %>
 
-<% if @robot.user == current_user %>
-  <%= link_to 'Edit', edit_robot_path(@robot) %> |
-  <%= link_to 'Delete', @robot, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <% if @robot.user == current_user %>
+    <%= link_to 'Edit', edit_robot_path(@robot) %> |
+    <%= link_to 'Delete', @robot, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <% end %>
 <% end %>
 
 <%= link_to 'Back', robots_path %>

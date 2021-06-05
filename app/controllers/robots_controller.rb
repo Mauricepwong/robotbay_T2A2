@@ -7,13 +7,13 @@ class RobotsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
 
   # ensure user has permission to change that robot.
-  before_action :access_robot, only: %i[edit update destroy]
+  before_action :access_robot, :sold_robot, only: %i[edit update destroy]
 
   rescue_from RuntimeError, with: :unauthorised
 
   # Unathorised method to only allow users to edit their own robots
   def unauthorised
-    flash[:notice] = 'You are not authorised to change this robot'
+    flash[:notice] = 'Unauthorised operation. Please try another option '
     redirect_to robots_path
   end
 
@@ -84,7 +84,14 @@ class RobotsController < ApplicationController
 
   # Prevent any user besides the owner to edit a robot
   def access_robot
-    raise 'unauthorised' if current_user != @robot.user
+    raise 'unauthorised' if current_user != @robot.user 
+  end
+
+  def sold_robots
+   if @robot.sold == true
+     flash[:notice] = 'Robot has been sold and can no longer be updated'
+     redirect_to robot_path(@robot)
+   end
   end
 
   def robot_params
