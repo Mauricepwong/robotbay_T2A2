@@ -7,7 +7,7 @@ class RobotsController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
 
   # ensure user has permission to change that robot.
-  before_action :access_robot, :sold_robot, only: %i[edit update destroy]
+  before_action :access_robot, :sold_robots, only: %i[edit update destroy]
 
   rescue_from RuntimeError, with: :unauthorised
 
