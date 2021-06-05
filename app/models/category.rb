@@ -1,5 +1,7 @@
 class Category < ApplicationRecord
-#    has_many :category_robots
-#    has_many :robots, { :through => :category_robots }
-has_and_belongs_to_many :robots
+    # A category has a many to many relationship with6 robots. This is through Categories_Robots
+    has_and_belongs_to_many :robots
+
+    # Validates that name is present when category is created
+    validates :name, presence: true
 end

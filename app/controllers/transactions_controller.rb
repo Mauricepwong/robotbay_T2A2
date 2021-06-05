@@ -6,6 +6,7 @@ class TransactionsController < ApplicationController
 
   rescue_from RuntimeError, with: :unauthorised
 
+  # This method sends information to stripe, make payment then redirects to success or failure page. 
   def create
     session =
       Stripe::Checkout::Session.create(
@@ -34,6 +35,9 @@ class TransactionsController < ApplicationController
     render json: { id: session.id }
   end
 
+  # After payment is successful, transaction record is created, adding a buyer and seller. 
+  # the robot atribute is also updated to sold. 
+
   def success
     tranaction =
       Transaction.create(
@@ -49,12 +53,13 @@ class TransactionsController < ApplicationController
   end
 
   def unauthorised
-    flash[:notice] = 'This purchase is not authorised'
+    flash[:notice] = 'This process is not authorised'
     redirect_to robots_path
   end
 
   private
 
+  # Sets the robot for a particular method before method is executed. 
   def set_robot
     begin
       @robot = Robot.find(params[:id])
@@ -64,6 +69,7 @@ class TransactionsController < ApplicationController
     end
   end
 
+  # Ensure that an owner cannot buy their own robot. 
   def access_buy
     if current_user == @robot.user 
       raise 'unauthorised' 
