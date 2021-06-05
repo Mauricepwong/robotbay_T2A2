@@ -1,31 +1,30 @@
 <%= form_with(model: robot) do |form| %>
     <div class="field">
-        <%= form.label :name %>
+        <%= form.label :name %>: <br />
         <%= form.text_field :name, required: true, autofocus: true %>
     </div>
     <br>
     <div class="field">
-        <%= form.label :description %>
+        <%= form.label :description %>: <br />
         <%= form.text_area :description %>
     </div>
     <br>
     <div class="field">
-        <%= form.label :price %>
+        <%= form.label :price %>: <br />
         <%= form.number_field :price, min:0, required: true, autofocus: true %>
     </div>
-
+ <br>
     <div class="field">
-        <%= form.label :image %>
+        <%= form.label :image %>: <br />
         <%= form.file_field :image, accept: 'image/png, image/jpg, image/jpeg' %>
         <%= image_tag(@robot.image) if @robot.image.attached?%>
     </div>
-
+<br>
     <div class="field">
-        <%= form.label :categories %>
+        <%= form.label :categories %> <br />
         <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
     </div>
-
-
+<br>
     <div class="field">
         <%= form.text_field :user_id, id: :robot_user_id, value:current_user.id, type: :hidden%>
     </div>

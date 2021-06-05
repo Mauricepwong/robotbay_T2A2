@@ -20,7 +20,7 @@
     <tr>
         <td><%= link_to robot.name, robot_path(robot[:id]) %></td>
         <td>$<%= robot.price %></td>
-        <td><%= image_tag(robot.image) if robot.image.attached? %></td>
+        <td class="image" ><%= image_tag(robot.image) if robot.image.attached? %>  </td>
         <td><%= robot.user.username %></td>
     </tr>
     <% end %>  
