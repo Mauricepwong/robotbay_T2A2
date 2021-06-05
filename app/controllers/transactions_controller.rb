@@ -53,7 +53,7 @@ class TransactionsController < ApplicationController
   end
 
   def unauthorised
-    flash[:notice] = 'This process is not authorised'
+    flash[:alert] = 'This process is not authorised'
     redirect_to robots_path
   end
 

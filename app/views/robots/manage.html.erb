@@ -1,0 +1,63 @@
+<h1>Manage robots</h1>
+
+<br />
+<h2>Current Robots<h2>
+<div class = "container" >
+  <table class= "table" >
+    <tr>  
+      <th>Robot Name</th>
+      <th>Price</th>
+      <th>Image</th>
+    </tr>
+    <% @current_robots.each do |robot| %>
+    <tr>
+        <td><%= link_to robot.name, robot_path(robot[:id]) %></td>
+        <td>$<%= robot.price %></td>
+        <td><%= image_tag(robot.image) if robot.image.attached? %></td>
+    </tr>
+    <% end %>  
+  </table>
+</div>
+
+
+<br />
+<h2>Sold Robots<h2>
+ <div class = "container" >
+  <table class= "table" >
+    <tr>  
+      <th>Robot Name</th>
+      <th>Price</th>
+      <th>Image</th>
+       <th>Buyer</th>
+    </tr>
+    <% @sold_robots.each do |robot| %>
+    <tr>
+        <td><%= link_to robot.name, robot_path(robot[:id]) %></td>
+        <td>$<%= robot.price %></td>
+        <td><%= image_tag(robot.image) if robot.image.attached? %></td>
+        <td><%= robot.sale.buyer_id %></td>
+    </tr>
+    <% end %>  
+  </table>
+</div>
+
+<br />
+ <h2>Purchased Robots<h2>
+ <div class = "container" >
+  <table class= "table" >
+    <tr>  
+      <th>Robot Name</th>
+      <th>Price</th>
+      <th>Image</th>
+      <th>Seller</td>
+    </tr>
+    <% @purchased_robots.each do |robot| %>
+    <tr>
+        <td><%= link_to robot.name, robot_path(robot[:id]) %></td>
+        <td>$<%= robot.price %></td>
+        <td><%= image_tag(robot.image) if robot.image.attached? %></td>
+        <td><%= robot.user.username %></td>
+    </tr>
+    <% end %>  
+  </table>
+</div>

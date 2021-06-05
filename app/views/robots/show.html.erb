@@ -34,8 +34,7 @@
   <% if @robot.image.attached?%>
   <%= image_tag(@robot.image) %>
   <% else %>
-    <%= image_tag "robot_image.png", alt: "default image" %>
-  <% end %>
+    <%= image_tag "robot_image.png", alt: "default image", width: 150 %>
   <% end %>
 </p>
 

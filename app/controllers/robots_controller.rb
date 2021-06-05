@@ -35,7 +35,7 @@ class RobotsController < ApplicationController
       redirect_to robots_path
     else
       redirect_to new_robot_path,
-      flash[:notice] = 'Error saving robot. Please try again'
+      flash[:alert] = 'Error saving robot. Please try again'
     end
   end
 
@@ -52,7 +52,7 @@ class RobotsController < ApplicationController
       redirect_to @robot
     else
       redirect_to @robot,
-      flash[:notice] = 'Error updating robot. Please try again'
+      flash[:alert] = 'Error updating robot. Please try again'
     end
   end
 
@@ -64,7 +64,7 @@ class RobotsController < ApplicationController
   end
   
   # Retrieves from database for a specific user the robots that they listed, have sold and purchased.  
-  def myrobots
+  def manage
     @current_robots = current_user.robots.where.missing(:sale)
     @sold_robots = current_user.sold_robots
     @purchased_robots = current_user.purchased_robots
@@ -89,7 +89,7 @@ class RobotsController < ApplicationController
 
   def sold_robots
    if @robot.sold == true
-     flash[:notice] = 'Robot has been sold and can no longer be updated'
+     flash[:alert] = 'Robot has been sold and can no longer be updated'
      redirect_to robot_path(@robot)
    end
   end

@@ -16,7 +16,7 @@ Rails
     post 'transactions', to: 'transactions#create', as: 'transactions'
 
     get '/profile', to: 'users#show', as: 'user'
-    get '/profile/myrobots', to: 'robots#myrobots', as: 'my_robots'
+    get '/profile/managerobots', to: 'robots#manage', as: 'manage_robots'
     
     devise_for :users
     root 'home#index'
